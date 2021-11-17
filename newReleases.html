@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>launch page</title>
+   <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+	<header>
+		<nav>
+			<ul>
+        <!--<li id="firstNav"><a href="trending.html">TRENDING</a></li>-->
+        <li><a href="newReleases.html">NEW RELEASES</a></li>
+        <li><a href="calendar.html">CALENDAR</a></li>
+        <li><a href="index.html"><img  id="logo" src="images/logoTumix.png" alt="company logo" /></a></li>
+        <li><a href="tour.html">TOUR</a></li>
+        <li><a href="topRated.html">TOP RATED</a></li>
+        <!--<li id="lastNav"><a href="featured.html">FEATURED</a></li>-->
+      </ul>
+		</nav>
+	</header>
+		<img src="images/loading.gif" id="loadRel" alt="gif">
+		<div class="albumContainer" id="albumCont">
+		
+			
+		</div> 
+    <script type="text/javascript" src="JS/script.js"></script>
+    <script>
+    	 document.getElementById("loadRel").style.display = "block" ;
+    	 document.getElementById("albumCont").style.display = "none" ;
+
+    populatenewReleaseFrames() ;
+    
+
+     function populatenewReleaseFrames()
+      {
+      console.log("TOPRATED") ;
+     
+      for(i = 0; i < 10; i++) 
+      {
+
+        //var songContainer = document.getElementById("hideWhileLoad");
+    
+        var wrap = document.getElementById("albumCont");
+        var songboxRel = document.createElement("DIV");
+        songboxRel.setAttribute("class", "songboxRel");
+        songboxRel.setAttribute("id", "songboxRel"+i);
+        wrap.appendChild(songboxRel) ;
+        
+        songboxRel.innerHTML = '<figure><img src="images/modern.jpg" alt="Trulli" ><div class="figcap"><div class="figc"><b>Title:</b><span class="title"> Modern Loneliness</span></div><div class="figc"><b>Artist:</b><span class="artist"> Lauv</span></div><div class="figc"><b>Record label:</b><span class="label"> Atlanta Music</span></div><div class="figc"><b>Rating:</b> 4.8</div></div><div class="tooltip">A wonderful song about love</div></figure>';
+       
+      } 
+    //  document.getElementsByClassName("load").display = "block" ;
+            populatenewReleaseAlbums() ;
+  }
+
+function populatenewReleaseAlbums(){
+ 
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     albumData = JSON.parse(this.responseText);
+     console.log(albumData) ;
+     for(i=0 ; i< 10 ; i++){
+     	 var SB = "#songboxRel"+ i ;
+     	 document.querySelector(SB+" .title").innerHTML = albumData.albums[i].name ;
+     	 document.querySelector(SB+" .artist").innerHTML = albumData.albums[i].artistName ; 
+     	  document.querySelector(SB+" .label").innerHTML = albumData.albums[i].label ;
+     	   document.querySelector(SB+" .artist").innerHTML = albumData.albums[i].artistName ;  
+     	   newRelGetAlbumImg(albumData.albums[i].id, i) ;
+     	    
+     }
+    }
+  };
+  xhttp.open("GET", " https://api.napster.com/v2.2/albums/new?apikey=MTYyMTRiZDMtMDc5OC00NDlhLTk3MTctODJlYTA1NDg3MmY5", true);
+  xhttp.send();
+
+}
+
+function newRelGetAlbumImg(id, i){
+
+	 var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     var playListData = JSON.parse(this.responseText);
+     console.log("An Album Image") ;
+     console.log(playListData) ;
+     var SB = "#songboxRel"+ i ;
+     document.querySelector(SB+" img").src = playListData.images[0].url ;
+    }
+    stopnewRel() ;
+  };
+   xhttp.open("GET", 'https://api.napster.com/v2.2/albums/'+ id +'/images?apikey=MTYyMTRiZDMtMDc5OC00NDlhLTk3MTctODJlYTA1NDg3MmY5&limit=200', true);
+  xhttp.send();
+
+}
+
+
+function stopnewRel(){
+	 document.getElementById("albumCont").style.display = "block" ;
+	 document.getElementById("loadRel").style.display = "none" ;
+}
+
+  </script>
+ 
+</body>
+</html>

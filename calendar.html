@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>launch page</title>
+   <link rel="stylesheet" href="css/styles.css">
+
+	
+</head>
+<body id="body">
+	<header>
+		<nav>
+			<ul>
+				<!--<li id="firstNav"><a href="trending.html">TRENDING</a></li>-->
+                <li><a href="newReleases.html">NEW RELEASES</a></li>
+                <li><a href="calendar.html">CALENDAR</a></li>
+                <li><a href="index.html"><img  id="logo" src="images/logoTumix.png" alt="company logo" /></a></li>
+                <li><a href="tour.html">TOUR</a></li>
+                <li><a href="topRated.html">TOP RATED</a></li>
+                <!--<li id="lastNav"><a href="featured.html">FEATURED</a></li>-->
+			</ul>
+		</nav>
+	</header>
+	 
+
+   <h3 class="card-header" id="monthAndYear"></h3>
+   <div id="traverseMonths">
+      <button id="prevMonth" onclick="prev()">Prev</button>
+      <button id="nextMonth" onclick="next()">Next</button>
+    </div>
+    <button id="tod" onclick="Thisday()">Today</button>
+    <form class="form-inline">
+
+            <label  for="Country">Select Country: </label>
+            <select class="form-control col-sm-4" name="Country" id="Country" onchange="country()">
+                <option value="NZ">New Zealand</option>
+                <option value="CA">Canada</option>
+                <option value="US">US</option>
+                <option value="BE">Belgium</option>
+            </select>
+
+            <label class="lead mr-2 ml-2" for="month">Jump To: </label>
+            <select class="form-control col-sm-4" name="month" id="month" onchange="jump()">
+                <option value=0>Jan</option>
+                <option value=1>Feb</option>
+                <option value=2>Mar</option>
+                <option value=3>Apr</option>
+                <option value=4>May</option>
+                <option value=5>Jun</option>
+                <option value=6>Jul</option>
+                <option value=7>Aug</option>
+                <option value=8>Sep</option>
+                <option value=9>Oct</option>
+                <option value=10>Nov</option>
+                <option value=11>Dec</option>
+            </select>
+
+
+            <label for="year"></label><select class="form-control col-sm-4" name="year" id="year" onchange="jump()">
+            <option value=1990>1990</option>
+            <option value=1991>1991</option>
+            <option value=1992>1992</option>
+            <option value=1993>1993</option>
+            <option value=1994>1994</option>
+            <option value=1995>1995</option>
+            <option value=1996>1996</option>
+            <option value=1997>1997</option>
+            <option value=1998>1998</option>
+            <option value=1999>1999</option>
+            <option value=2000>2000</option>
+            <option value=2001>2001</option>
+            <option value=2002>2002</option>
+            <option value=2003>2003</option>
+            <option value=2004>2004</option>
+            <option value=2005>2005</option>
+            <option value=2006>2006</option>
+            <option value=2007>2007</option>
+            <option value=2008>2008</option>
+            <option value=2009>2009</option>
+            <option value=2010>2010</option>
+            <option value=2011>2011</option>
+            <option value=2012>2012</option>
+            <option value=2013>2013</option>
+            <option value=2014>2014</option>
+            <option value=2015>2015</option>
+            <option value=2016>2016</option>
+            <option value=2017>2017</option>
+            <option value=2018>2018</option>
+            <option value=2019>2019</option>
+            <option value=2020>2020</option>
+            <option value=2021>2021</option>
+            <option value=2022>2022</option>
+            <option value=2023>2023</option>
+            <option value=2024>2024</option>
+            <option value=2025>2025</option>
+            <option value=2026>2026</option>
+            <option value=2027>2027</option>
+            <option value=2028>2028</option>
+            <option value=2029>2029</option>
+            <option value=2030>2030</option>
+        </select></form>
+
+        <h3 id="eventYesNo"></h3>
+        <img src="images/loading.gif" id="loadCal" alt="gif" />
+        <table class="table table-bordered table-responsive-sm" id="calendar">
+            <thead>
+            <tr>
+                <th>Sun</th>
+                <th>Mon</th>
+                <th>Tue</th>
+                <th>Wed</th>
+                <th>Thu</th>
+                <th>Fri</th>
+                <th>Sat</th>
+            </tr>
+            </thead>
+
+            <tbody id="calendar-body">
+
+            </tbody>
+        </table>
+    
+
+
+
+
+	<script>
+
+
+
+
+today = new Date();
+currCountry = "" ;
+currentMonth = today.getMonth();
+currentYear = today.getFullYear();
+selectYear = document.getElementById("year");
+selectMonth = document.getElementById("month");
+
+months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+monthAndYear = document.getElementById("monthAndYear");
+showCalendar(currentMonth, currentYear);
+
+function country() {
+  currCountry = document.getElementById("Country").value;
+  showCalendar(today.getMonth(), today.getFullYear(), document.getElementById("Country").value);
+}
+
+
+function next() {
+  console.log("NEXT ENTERED") ;
+    currCountry = document.getElementById("Country").value;
+    currentYear = (currentMonth === 11) ? currentYear + 1 : currentYear;
+    currentMonth = (currentMonth + 1) % 12;
+    showCalendar(currentMonth, currentYear,currCountry);
+}
+
+function prev() {
+    currCountry = document.getElementById("Country").value;
+    currentYear = (currentMonth === 0) ? currentYear - 1 : currentYear;
+    currentMonth = (currentMonth === 0) ? 11 : currentMonth - 1;
+    showCalendar(currentMonth, currentYear,currCountry);
+}
+
+
+function jump() {
+    currentYear = parseInt(selectYear.value);
+    currentMonth = parseInt(selectMonth.value);
+    showCalendar(currentMonth, currentYear);
+}
+
+function Thisday(){
+
+    showCalendar(today.getMonth(), today.getFullYear());
+    date = today.getDate();
+    var newID = "" ;
+                var IMonth = String(today.getMonth()+1);
+                var IDay = String(date);
+                if(IMonth.length == 1){
+                    IMonth = "0"+IMonth ;
+                } 
+                if(IDay.length == 1){
+                    IDay = "0"+ IDay ;
+                }
+                newID = "_"+today.getFullYear()+IMonth+IDay+"_" ;
+console.log("TODAYYY", newID);
+
+    document.getElementById(newID).innerHTML="today";
+    document.getElementById(newID).style.backgroundColor="red";
+}
+
+
+function showCalendar(month, year, country = "NZ") {
+    document.getElementById("calendar").style.visibility = "hidden" ;
+    document.getElementById("loadCal").style.display = "block" ;
+    let firstDay = (new Date(year, month)).getDay();
+
+    tbl = document.getElementById("calendar-body"); // body of the calendar
+
+    // clearing all previous cells
+    tbl.innerHTML = "";
+
+    // filing data about month and in the page via DOM.
+    monthAndYear.innerHTML = months[month] + " " + year;
+    selectYear.value = year;
+    selectMonth.value = month;
+    Country = country;
+
+    // creating all cells
+    let date = 1;
+    for (let i = 0; i < 6; i++) {
+        // creates a table row
+        let row = document.createElement("tr");
+
+        //creating individual cells, filing them up with data.
+        for (let j = 0; j < 7; j++) {
+            if (i === 0 && j < firstDay) {
+                cell = document.createElement("td");
+                cellText = document.createTextNode("");
+                cell.appendChild(cellText);
+                row.appendChild(cell);
+            }
+            else if (date > daysInMonth(month, year)) {
+                break;
+            }
+
+            else {
+                var newID = "" ;
+                var IMonth = String(month+1);
+                var IDay = String(date);
+                if(IMonth.length == 1){
+                    IMonth = "0"+IMonth ;
+                } 
+                if(IDay.length == 1){
+                    IDay = "0"+ IDay ;
+                }
+                newID = "_"+year+IMonth+IDay+"_" ;
+                
+                cell = document.createElement("td");
+                cellText = document.createElement("div");
+                cellEvent = document.createElement("P") ;
+                cellEvent.setAttribute("id", newID) ;
+                if (date === today.getDate() && year === today.getFullYear() && month === today.getMonth()) {
+                    cell.classList.add("bg-info");
+                } // color today's date
+                cellText.innerHTML = date ;
+              
+                cell.appendChild(cellText);
+                cell.appendChild(cellEvent) ;
+                row.appendChild(cell);
+               
+                date++;
+            }
+
+
+        }
+
+        tbl.appendChild(row); // appending each row into calendar body.
+    }
+    Trying() ;
+    populateCalendarEvents(country) ;
+}
+
+
+function Trying(){
+  // document.getElementById("_20200411_").style.backgroundColor = "red" ;
+}
+
+
+// check how many days in a month code from https://dzone.com/articles/determining-number-days-month
+function daysInMonth(iMonth, iYear) {
+    return 32 - new Date(iYear, iMonth, 32).getDate();
+}
+
+
+
+
+//var startMonthDay = (new Date(year, month)).getDay();
+//console.log(startMonthDay) ;
+
+
+
+
+
+
+
+//API start
+
+
+
+function populateCalendarEvents(C){
+  console.log(C) ;
+ var City = "CA" ;
+City = C ;
+var EDate ;
+var EYear;
+var EMonth ;
+var EDay ;
+var Ename ;
+var ELoc ;
+var searchID ;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     events = JSON.parse(this.responseText);
+     //console.log(events) ; 
+
+     var EventsYes = 0 ;
+     console.log("logging event ids") ;
+     for(i=0 ; i< 20 ; i++){
+       try{ 
+        EDate = events._embedded.events[i].dates.start.localDate ;
+        EYear = EDate.slice(0, 4);
+        EMonth = EDate.slice(5, 7);
+        EDay= EDate.slice(8, 10);
+        Ename = events._embedded.events[i].name;
+        ELoc = events._embedded.events[i]._embedded.venues[0].name ;
+        //console.log(EDate) ;
+        searchID = "_"+EYear+EMonth+EDay+"_" ;}
+        catch{
+          EventsYes = 0 ;
+        }
+
+        //console.log(searchID) ;
+        //console.log(searchID) ;
+        
+        try {
+          document.getElementById(searchID).innerHTML = "<div class='eventName'>"+Ename+"</div><div class='eventLocation'>"+ELoc+"</div>" ;
+          document.getElementById(searchID).style.backgroundColor = "white" ;
+          EventsYes++ ;
+
+        }
+        catch(err) {
+          //console.log("error") ;
+        }
+        //
+     }
+
+     if(EventsYes>0){
+        document.getElementById("eventYesNo").innerHTML = EventsYes+" events are avialable on the selected month, check the calendar below" ;
+     }
+     else{
+        document.getElementById("eventYesNo").innerHTML = EventsYes+" events are avialable on the selected month, try clicking next to see whats up next month" ;
+  
+     }
+     stopCal() ;
+   //  /discovery/v2/classifications/segments/KZFzniwnSyZfZ7v7nJ
+    }
+    
+  };
+  xhttp.open("GET", "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&countryCode="+City+"&apikey=rGwfOyvOipVFwjczkZh5ep7X7CAY60GP", true);
+  xhttp.send();
+
+}
+
+//API end
+
+function stopCal(){
+  document.getElementById("calendar").style.visibility = "visible" ;
+    document.getElementById("loadCal").style.display = "none" ;
+}
+		
+  </script>
+
+	
+</body>
+</html>

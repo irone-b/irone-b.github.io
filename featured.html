@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>launch page</title>
+   <link rel="stylesheet" href="css/styles.css">
+</head>
+<body id="wrapperFeat">
+	<header>
+    <nav>
+      <ul>
+        <!--<li id="firstNav"><a href="trending.html">TRENDING</a></li>-->
+        <li><a href="newReleases.html">NEW RELEASES</a></li>
+        <li><a href="calendar.html">CALENDAR</a></li>
+        <li><a href="index.html"><img  id="logo" src="images/logoTumix.png" alt="company logo" /></a></li>
+        <li><a href="tour.html">TOUR</a></li>
+        <li><a href="topRated.html">TOP RATED</a></li>
+        <!--<li id="lastNav"><a href="featured.html">FEATURED</a></li>-->
+      </ul>
+    </nav>
+  </header>
+    <img src="images/loading.gif" id="loadFeat" alt="gif">
+    <div id="featuredWrap">
+    </div>
+  <script type="text/javascript" src="JS/script.js"></script>
+  <script>
+
+     function populateFeaturedFrames(id,title,duration,artName,cover,prev,i)
+      {
+        console.log(i) ;
+      
+      //var wrapper = document.getElementById("featureWrap") ;
+
+        var boxName = "featured song #" + i ;
+       // var wrap = document.getElementById("wrapperFeat");
+       var wrap= document.getElementById("featuredWrap") ;
+        var featBox = document.createElement("DIV");
+        featBox.setAttribute("class", "Featured");
+        featBox.setAttribute("id", "Featured"+i);
+        wrap.appendChild(featBox) ;
+
+        
+        featBox.innerHTML = '<h1>'+ boxName +'</h1><div><figure><img src='+cover+' alt="Trulli"><div class ="figcap"><b>Title:</b>'+title+'</div><div class ="figcap"><b>Artist:</b>'+artName+'</div><div class ="figcap"><b>Release date:</b> 2012</div><div class ="figcap"><b>Album:</b> Breezeblocks EP</div><div class ="figcap"><b>Genre:</b> Alternative/Indie</div><div class ="figcap"><b>Duration:</b>'+duration+'</div></figure><audio controls><source src='+prev+' type="audio/mpeg">Your browser does not support the audio tag.</audio></div>';
+        
+      if(i == 9){
+          document.getElementById("featuredWrap").style.display ="block" ;
+          document.getElementById("loadFeat").style.display ="none" ;
+        }
+
+  }
+
+  populateFeaturedSongs() ;
+function populateFeaturedSongs(){
+  document.getElementById("featuredWrap").style.display ="none" ;
+document.getElementById("loadFeat").style.display ="block" ;
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     chart = JSON.parse(this.responseText);
+     console.log("logging chart") ;
+     console.log(chart) ;
+     for(i=1; i<10; i++){
+        console.log(chart.tracks.data[i].id ) ;
+        console.log(i) ;
+        populateFeaturedFrames(chart.tracks.data[i].id,chart.tracks.data[i].title,chart.tracks.data[i].duration, chart.tracks.data[i].artist.name,chart.tracks.data[i].album.cover,chart.tracks.data[i].preview ,i ) ;
+     }
+     
+    }
+  };
+  xhttp.open("GET", " https://api.deezer.com/chart", false);
+  xhttp.send();
+
+}
+
+
+
+
+  </script>
+ 
+  
+
+
+</body>
+</html>

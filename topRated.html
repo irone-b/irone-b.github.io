@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>launch page</title>
+   <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <!--<li id="firstNav"><a href="trending.html">TRENDING</a></li>-->
+        <li><a href="newReleases.html">NEW RELEASES</a></li>
+        <li><a href="calendar.html">CALENDAR</a></li>
+        <li><a href="index.html"><img  id="logo" src="images/logoTumix.png" alt="company logo" /></a></li>
+        <li><a href="tour.html">TOUR</a></li>
+        <li><a href="topRated.html">TOP RATED</a></li>
+        <!--<li id="lastNav"><a href="featured.html">FEATURED</a></li>-->
+      </ul>
+    </nav>
+  </header>
+  <img src="images/loading.gif" id="loadTop" alt="gif" />
+  <div class="wrapTop" id="wrapTop">
+		<ol id="orderedList">
+			
+		</ol>
+	</div>
+ <script type="text/javascript" src="JS/script.js"></script>
+ <script>
+
+populatetopRatedFrames() ;
+function populatetopRatedSongs(){
+ 
+    document.getElementById("wrapTop").style.display ="none" ;
+    document.getElementById("loadTop").style.display ="block" ;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     playListData = JSON.parse(this.responseText);
+     console.log(playListData) ;
+     console.log(playListData.playlists[1].id);
+     findPlaylist(playListData.playlists[1].id);
+
+    // myObjectTopTracks = playListData ;
+    // populatetopRatedSongsStep2(playListData) ;
+    // console.log(playListData) ;
+     
+    // https://api.napster.com/v2.0/playlists?apikey=MTYyMTRiZDMtMDc5OC00NDlhLTk3MTctODJlYTA1NDg3MmY5
+   // 'https://api.napster.com/v2.0/playlists/' + id + '/tracks?apikey=ZTk2YjY4MjMtMDAzYy00MTg4LWE2MjYtZDIzNjJmMmM0YTdm&limit=200'
+    }
+  };
+  xhttp.open("GET", " https://api.napster.com/v2.2/playlists/featured?apikey=MTYyMTRiZDMtMDc5OC00NDlhLTk3MTctODJlYTA1NDg3MmY5", true);
+  xhttp.send();
+
+}
+
+function findPlaylist(plURL){
+  var id = plURL ;
+  console.log('this is an id'+ id) ;
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     playListData = JSON.parse(this.responseText);
+     findTrack(playListData);
+    }
+  };
+   xhttp.open("GET", 'https://api.napster.com/v2.0/playlists/' + id + '/tracks?apikey=MTYyMTRiZDMtMDc5OC00NDlhLTk3MTctODJlYTA1NDg3MmY5&limit=200', true);
+  xhttp.send();
+
+}
+
+function findTrack(track){
+  trackIds = [] ;
+  for(i=0 ;i<10 ;i++){
+    trackIds[i] = track.tracks[i].id ;
+    populatetopRatedSongsStep1(trackIds[i],i) ;
+  }
+
+}
+
+function populatetopRatedSongsStep1(id,count){
+  var c =count ;
+  console.log('this is an id'+ id) ;
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     playListData = JSON.parse(this.responseText);
+     //console.log(playListData) ;
+     populatetopRatedSongsStep2(playListData, c);
+    }
+  };
+   xhttp.open("GET", 'https://api.napster.com/v2.2/tracks/'+ id +'?apikey=MTYyMTRiZDMtMDc5OC00NDlhLTk3MTctODJlYTA1NDg3MmY5&limit=200', true);
+  xhttp.send();
+
+}
+
+var RecordLabel ;
+
+function populatetopRatedSongsStep2(plData,i){
+  var names = [];
+console.log( i) ;
+console.log( plData) ;
+console.log(plData.tracks[0].artistName ) ; 
+findingALbumData(plData.tracks[0].albumId,i) ;
+findingALbumImage(plData.tracks[0].albumId,i) ;
+  var SB = "#top"+ i ;
+    
+  document.querySelector(SB+" .topName").innerHTML = plData.tracks[0].name ;
+  document.querySelector(SB+" .topArt").innerHTML = " -" + plData.tracks[0].artistName ;
+  //document.querySelector(SB+" .topImg").src = plData.tracks.track[i].image[2]['#text'] ;
+  
+}
+
+function findingALbumData(id,i){
+
+  
+  
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     var playListData = JSON.parse(this.responseText);
+     console.log("An Album") ;
+     console.log(playListData) ;
+     var SB = "#top"+ i ;
+     document.querySelector(SB+" .recordL").innerHTML = playListData.albums[0].label ;
+    }
+  };
+   xhttp.open("GET", 'https://api.napster.com/v2.2/albums/'+ id +'?apikey=MTYyMTRiZDMtMDc5OC00NDlhLTk3MTctODJlYTA1NDg3MmY5&limit=200', true);
+  xhttp.send();
+
+}
+
+function findingALbumImage(id,i){
+
+  
+  
+  var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     var playListData = JSON.parse(this.responseText);
+     console.log("An Album Image") ;
+     console.log(playListData) ;
+     var SB = "#top"+ i ;
+     document.querySelector(SB+" .topImg").src = playListData.images[0].url ;
+    }
+    document.getElementById("wrapTop").style.display ="block" ;
+    document.getElementById("loadTop").style.display ="none" ;
+  };
+   xhttp.open("GET", 'https://api.napster.com/v2.2/albums/'+ id +'/images?apikey=MTYyMTRiZDMtMDc5OC00NDlhLTk3MTctODJlYTA1NDg3MmY5&limit=200', true);
+  xhttp.send();
+}
+ </script>
+
+</body>
+</html>

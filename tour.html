@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>launch page</title>
+   <link rel="stylesheet" href="css/styles.css">
+</head>
+<body id="body">
+	<header>
+		<nav>
+			<ul>
+				<!--<li id="firstNav"><a href="trending.html">TRENDING</a></li>-->
+        <li><a href="newReleases.html">NEW RELEASES</a></li>
+        <li><a href="calendar.html">CALENDAR</a></li>
+        <li><a href="index.html"><img  id="logo" src="images/logoTumix.png" alt="company logo" /></a></li>
+        <li><a href="tour.html">TOUR</a></li>
+        <li><a href="topRated.html">TOP RATED</a></li>
+        <!--<li id="lastNav"><a href="featured.html">FEATURED</a></li>-->
+			</ul>
+		</nav>
+	</header>
+	<img src="images/loading.gif" id="loadTour" alt="gif" />
+	<div id="tourWrap">
+	<div class="onTour" >
+		<h1>On tour in Canada</h1>
+		<h3><a href="calendar.html">View on calendar to see locations</a></h3>
+		<ul id="onTourCA">
+		</ul>
+	</div>
+	<div class="onTour" >
+		<h1>On tour in the US</h1>
+		<h3><a href="calendar.html">View on calendar to see locations</a></h3>
+		<ul id="onTourUS">
+		</ul>
+	</div>
+	<div class="onTour">
+		<h1>On tour in New Zealand</h1>
+		<h3><a href="calendar.html">View on calendar to see locations</a></h3>
+		<ul id="onTourNZ">
+		</ul>
+	</div>
+	<div class="onTour">
+		<h1>On tour in Belgium</h1>
+		<h3><a href="calendar.html">View on calendar to see locations</a></h3>
+		<ul id="onTourBE">
+		</ul>
+	</div>
+</div>
+
+<script>
+
+popOnTour1() ;
+//
+
+function popOnTour1(){
+	document.getElementById("tourWrap").style.display = "none" ;
+	document.getElementById("loadTour").style.display = "block" ;
+City = "CA" ;
+var EDate ;
+var Ename ;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     events = JSON.parse(this.responseText);
+     //console.log(events) ; 
+     console.log("logging event ids CA", events) ;
+     for(i=0 ; i< 20 ; i++){
+
+        EDate = events._embedded.events[i].dates.start.localDate ;
+        Ename = events._embedded.events[i].name;
+
+      
+          var ListIt = document.createElement("li") ;
+          ListIt.innerHTML = "<p><b>Band on tour:</b>" + Ename+"</p>" +"<p><b>Date of tour:</b>" + EDate +"</p>";
+          document.getElementById("onTour"+City).appendChild(ListIt) ;
+        
+       
+        //
+     }
+     popOnTour2() ;
+   //  /discovery/v2/classifications/segments/KZFzniwnSyZfZ7v7nJ
+    }
+  };
+  xhttp.open("GET", "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&countryCode="+City+"&apikey=rGwfOyvOipVFwjczkZh5ep7X7CAY60GP", true);
+  xhttp.send();
+
+}
+
+function popOnTour2(){
+
+City = "NZ" ;
+var EDate ;
+var Ename ;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     events = JSON.parse(this.responseText);
+     //console.log(events) ; 
+     console.log("logging event ids NZ", events) ;
+     for(i=0 ; i< 20 ; i++){
+  
+        EDate = events._embedded.events[i].dates.start.localDate ;
+        Ename = events._embedded.events[i].name;
+      
+ 
+          var ListIt = document.createElement("li") ;
+          ListIt.innerHTML = "<p><b>Band on tour:</b>" + Ename+"</p>" +"<p><b>Date of tour:</b>" + EDate +"</p>";
+          document.getElementById("onTour"+City).appendChild(ListIt) ;
+       
+        //
+     }
+   //  /discovery/v2/classifications/segments/KZFzniwnSyZfZ7v7nJ
+    popOnTour3() ;
+    }
+   
+  };
+  xhttp.open("GET", "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&countryCode="+City+"&apikey=rGwfOyvOipVFwjczkZh5ep7X7CAY60GP", true);
+  xhttp.send();
+
+}
+
+function popOnTour3(){
+
+City = "BE" ;
+var EDate ;
+var Ename ;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     events = JSON.parse(this.responseText);
+     //console.log(events) ; 
+     console.log("logging event ids NZ", events) ;
+     for(i=0 ; i< 20 ; i++){
+  
+        EDate = events._embedded.events[i].dates.start.localDate ;
+        Ename = events._embedded.events[i].name;
+      
+ 
+          var ListIt = document.createElement("li") ;
+          ListIt.innerHTML = "<p><b>Band on tour:</b>" + Ename+"</p>" +"<p><b>Date of tour:</b>" + EDate +"</p>";
+          document.getElementById("onTour"+City).appendChild(ListIt) ;
+       
+        //
+     }
+      popOnTour4() ;
+   //  /discovery/v2/classifications/segments/KZFzniwnSyZfZ7v7nJ
+    }
+   
+  };
+  xhttp.open("GET", "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&countryCode="+City+"&apikey=rGwfOyvOipVFwjczkZh5ep7X7CAY60GP", true);
+  xhttp.send();
+
+}
+
+function popOnTour4(){
+
+City = "US" ;
+var EDate ;
+var Ename ;
+
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     events = JSON.parse(this.responseText);
+     //console.log(events) ; 
+     console.log("logging event ids NZ", events) ;
+     for(i=0 ; i< 20 ; i++){
+  
+        EDate = events._embedded.events[i].dates.start.localDate ;
+        Ename = events._embedded.events[i].name;
+      
+ 
+          var ListIt = document.createElement("li") ;
+          ListIt.innerHTML = "<p><b>Band on tour:</b>" + Ename+"</p>" +"<p><b>Date of tour:</b>" + EDate +"</p>";
+          document.getElementById("onTour"+City).appendChild(ListIt) ;
+       
+        //
+     }
+   //  /discovery/v2/classifications/segments/KZFzniwnSyZfZ7v7nJ
+   document.getElementById("tourWrap").style.display = "block" ;
+	document.getElementById("loadTour").style.display = "none" ;
+    }
+  };
+  xhttp.open("GET", "https://app.ticketmaster.com/discovery/v2/events.json?classificationName=music&countryCode="+City+"&apikey=rGwfOyvOipVFwjczkZh5ep7X7CAY60GP", true);
+  xhttp.send();
+
+}
+
+
+</script>
+
+</body>
+</html>

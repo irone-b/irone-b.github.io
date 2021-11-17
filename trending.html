@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>launch page</title>
+   <link rel="stylesheet" href="css/styles.css">
+</head>
+<body id="body">
+	<header>
+		<nav>
+			<ul>
+				<!--<li id="firstNav"><a href="trending.html">TRENDING</a></li>-->
+				<li><a href="newReleases.html">NEW RELEASES</a></li>
+				<li><a href="calendar.html">CALENDAR</a></li>
+				<li><a href="index.html"><img  id="logo" src="images/logoTumix.png" alt="company logo" /></a></li>
+				<li><a href="tour.html">TOUR</a></li>
+				<li><a href="topRated.html">TOP RATED</a></li>
+				<!--<li id="lastNav"><a href="featured.html">FEATURED</a></li>-->
+			</ul>
+		</nav>
+	</header>
+	<img src="images/loading.gif" id="load" alt="gif">
+	<div class="trendingGrid" id="hideWhileLoad">
+		<div class="filt" id="mainFilt">
+			<div  id="titleFilt1">Filter by</div>
+			<div id="genreFilter" class="filtRound One">
+				<span class="genre mood releaseD RatingD">Genre</span>
+			</div>
+			<div id ="moodFilter" class="filtRound Two">
+				<span class="genre mood releaseD RatingD">Mood</span>
+			</div>
+			<div id ="ReleaseD" class="filtRound Three">
+				<span class="genre mood releaseD RatingD">Release</span>
+			</div>
+			
+		</div>
+		<div class="filt" id="genres">
+			<div  id="titleFilt2">Filter by</div>
+			<div class="filtRound One">
+				<span class="genre mood releaseD RatingD">Pop/Alt</span>
+			</div>
+			<div  class="filtRound Two">
+				<span class="genre mood releaseD RatingD">Rap</span>
+			</div>
+			<div  class="filtRound Three">
+				<span class="genre mood releaseD RatingD">Rock</span>
+			</div>
+			<div  class="filtRound Four">
+				<span>Alt</span>
+			</div>
+		</div>
+		<div class="filt" id="moods">
+			<div  id="titleFilt3">Filter by</div>
+			<div class="filtRound One">
+				<span class="genre mood releaseD RatingD">Chill</span>
+			</div>
+			<div  class="filtRound Two">
+				<span class="genre mood releaseD RatingD">Study</span>
+			</div>
+			<div  class="filtRound Three">
+				<span class="genre mood releaseD RatingD">UpBeat</span>
+			</div>
+			<div  class="filtRound Four">
+				<span>Sad</span>
+			</div>
+		</div>
+		<div class="filt" id="releases">
+			<div  id="titleFilt3">Filter by</div>
+			<div  class="filtRound One">
+				<span class="genre mood releaseD RatingD">2000</span>
+			</div>
+			<div  class="filtRound Two">
+				<span class="genre mood releaseD RatingD">2010</span>
+			</div>
+			<div  class="filtRound Three">
+				<span class="genre mood releaseD RatingD">2019</span>
+			</div>
+			<div  class="filtRound Four">
+				<span>2020</span>
+			</div>
+		</div>
+		
+
+		<div class ="searchbar">
+			<input id="actualSearchbar" type="text" placeholder="  Search songs...">
+		</div>
+		<div id="trendingData">
+		</div>
+		
+		
+	</div>
+
+	<!-- <script type="text/javascript" src="JS/script.js"></script> -->
+
+<script type="text/javascript"  src="JS/script.js">
+		</script>
+ <script>
+    console.log("TRYING") ;
+    
+    var load = document.getElementById("load");
+    var block1 = document.getElementById("hideWhileLoad");
+    var body = document.getElementById("body");
+    var searched = false ;
+//populateSongs(6) ;
+
+    body.style.position = "fixed";
+    load.style.display="block";
+    block1.style.visibility="hidden";
+
+var TrackList = [] ;
+var TRY =0 ;
+populateSongs(10) ;
+document.getElementById("genreFilter").addEventListener("click", showGenres);
+document.getElementById("titleFilt1").addEventListener("click", function(){oldTitles() ;});  
+document.getElementById("titleFilt2").addEventListener("click", function(){oldTitles() ;});  
+document.getElementById("titleFilt3").addEventListener("click", function(){oldTitles() ;});  
+document.getElementById("moodFilter").addEventListener("click", showMoods); 
+document.getElementById("ReleaseD").addEventListener("click", showRelease); 
+ 
+ var input = document.getElementById("actualSearchbar");
+
+input.addEventListener("keyup", function(event){
+
+    if(event.keyCode === 13)
+    {
+    	body.style.position = "fixed";
+load.style.display="block";
+block1.style.visibility="hidden";
+    	 var songContainer = document.getElementById("trendingData");
+    	 searched = true ;
+    	 songContainer.innerHTML = "" ;
+    	 populateSongs(20) ;
+        var parameter = input.value;
+        searchSongs(parameter);
+        console.log(input.value);
+    }
+});
+
+  </script>
+
+
+</body>
+</html>
