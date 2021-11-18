@@ -1,0 +1,469 @@
+audio{
+	display: none ;
+}
+
+html,body{
+	margin: 0;
+	background-color: #6B4E71;
+	background-color: #53687E;
+	height: 100vh;
+	width: 100vw ;
+	z-index: -5 ;
+	overflow: hidden ;
+
+}
+
+#para{
+	position: fixed ;
+	width: 100vw ;
+	height: 100vh;
+	left: 0vw ;
+	top: 0vh ;
+	opacity: 0;
+}
+
+.bulbie{
+	position: fixed;
+	left: 0vw ;
+	top: 1vh;
+	width: 100vw;
+	height: 100vh;
+}
+
+.drawb{
+
+}
+
+#TEXT1{
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	top: 1vh;	
+	left: 0vw;
+	z-index: 5;	
+	
+}
+
+
+
+.Part1Text1{
+	opacity: 0 ;
+	z-index: 5;
+}
+
+.Part2Text1{
+	opacity: 0 ;
+	z-index: 5;
+}
+
+#QMARK{
+	position: fixed;
+	opacity: 0;
+	transform-origin: center;
+	z-index: 10 ;
+}
+
+
+
+#hoverBox{
+	position: fixed;
+	top:34vh;
+	left:46vw;
+	opacity: 0;
+	background-color: white;
+	width: 10vw;
+	height: 15vh;
+	z-index: 20;
+}
+
+#clickDr{
+	position: fixed;
+	top: 0vh;
+	left: 0vw;
+	width: 100vw ;
+	height:100vh ;
+	z-index: 0;
+	opacity: 1;
+}
+
+#hover1{
+	opacity: 0;
+}
+
+#newBall{
+	position: fixed ;
+	top: 0vh;
+	left: 0vw;
+	width: 100vw;
+	height: 100vh;
+	z-index: 15
+}
+#ball3{
+	opacity:0;
+}
+
+#circ1{
+	position: fixed;
+	top: 20vh;
+	left: 26vw;
+	width: 50vw;
+    height: 50vw;
+    border-radius: 100%;
+    background-color: #53687E;
+    z-index: 0;
+}
+
+
+#pathie1{
+	position: fixed ;
+	left: 27.6vw;
+	top: 37vh;
+	transform: scale(0.6);
+	z-index: 20 ;
+}
+
+#scene2Box{
+	position: fixed;
+	top: 0vh;
+	width: 100vw;
+	height: 100vh;
+	left: 0vw ;
+	z-index: 5 ;
+}
+
+.draw2{
+	opacity: 0;
+}
+
+
+
+#this, #way, #out{
+	opacity: 0 ;
+}
+
+#Text2Scene2{
+	position: fixed;
+	top: 0vh;
+	left:0vw ;
+	width: 100vw;
+	height: 100vh;
+	z-index: 6 ;
+}
+
+#Text2Scene2 path{
+	opacity: 0 ;
+}
+
+#scene3Back{
+	position: fixed;
+	width: 100vw;
+	height: 100vh;
+	z-index: 20;
+
+}
+
+#wall, .Scene3P1{
+	opacity: 0 ;
+}
+
+#lapper{
+	position: fixed ;
+	top:0vh ;
+	width: 0vw ;
+	height: 100vh;
+	width: 100vw;
+}
+
+#skoenOopNew{
+
+	opacity: 0;
+}
+
+#skoenToeNew{
+	
+	opacity: 0;
+}
+
+#TEXT3{
+	position: fixed;
+	top: 0vh;
+	left: 0vw;
+	height: 100vh;
+	width: 100vw;
+	z-index: 6;
+}
+
+#scene3back{
+	position: fixed;
+	top:0vh;
+	left: 0vw;
+	height: 100vh;
+	width: 100vw;
+	z-index: 6;
+}
+#polySign1{
+	z-index: 50 ;
+}
+#Scene3Text path, #Scene4Text path{
+	
+opacity: 0;
+}
+
+#skoenOop{
+	position: fixed;
+	top: -5vh;
+	left: -3vw;
+	opacity: 0;
+}
+
+#skoenToe{
+	position: fixed;
+	top: -5vh;
+	left: 0vw;
+	opacity: 0;
+}
+
+#FAN{
+	position: fixed ;
+	top: 0vh;
+	left: 0vw ;
+	width: 100vw ;
+	height:  100vh;
+	z-index: 0 ;
+	opacity: 0;
+}
+
+.down, .wind, .blow, #side{
+	opacity: 0 ;
+}
+
+#Scene5Text1 path{
+	opacity: 0 ;
+}
+
+#Scene5Text {
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+	opacity: 0;
+}
+
+#scene6{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+}
+
+
+.thought1POPUP,.thought2POPUP,.thought3POPUP,.thought4POPUP,.thought5POPUP,#MainCloud{
+	opacity: 0 ;
+}
+
+#thoughtScene{
+
+}
+
+#Scene6Text{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+
+}
+
+#Scene6Text path{
+	opacity: 0;
+}
+
+#Scene7Text_Main{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+	z-index: 0 ;
+}
+
+#Scene7Text_one path, #Scene7Text_two path, #MazeHover, #M{
+	opacity: 0;
+}
+
+#HoverMazeSVG{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+	z-index: -1 ;
+}
+
+#MazeHover{
+	opacity: 0;
+
+}
+#ballScene6{
+	opacity: 0
+}
+
+#plane{
+	position: fixed;
+	top: 0vh;
+	left: 0vw;
+	height: 100vh;
+	width: 100vw;
+	opacity: 0;
+}
+
+
+#scene6{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+}
+
+
+.thought1POPUP,.thought2POPUP,.thought3POPUP,.thought4POPUP,.thought5POPUP,#MainCloud{
+	opacity: 0 ;
+}
+
+#thoughtScene{
+
+}
+
+#Scene6Text{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+
+}
+
+#Scene6Text path{
+	opacity: 0;
+}
+
+#Scene7Text_Main{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+	z-index: 0 ;
+}
+
+#Scene7Text_one path, #Scene7Text_two path, #MazeHover, #M{
+	opacity: 0;
+}
+
+#HoverMazeSVG{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+	z-index: 0 ;
+}
+
+#MazeHover{
+	opacity: 0;
+	z-index: 0 ;
+}
+
+
+#lastScenes{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+
+}
+
+#guidePerson, .guideBub, #industries, .logoDraw, .buildM{
+	opacity: 0 ;
+}
+
+#LastScenesText{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+	z-index: 0 ;
+	
+}
+
+#Scene8Text path, #Scene9Text path,#Scene10Text path{
+	opacity: 0 ;
+}
+
+#scrollImg{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+	opacity: 0 ;
+	z-index: 0 ;
+}
+
+#Scene10TextFinal{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+	z-index: 0 ;
+}
+
+#Scene10TextFinal path{
+	opacity: 0
+}
+
+
+
+#theEnd{
+	position: fixed ;
+	height: 100vh ;
+	width: 100vw ;
+	top: 0vh;
+	left: 0vw ;
+	opacity: 0;
+	z-index: 0 ;
+}
+
+#rationale, #url{
+	display: none;
+	margin: auto;
+	font-family: verdana;
+	width: 60%; 
+	font-size: 2.5vh ;
+	margin-top: 10vh ;
+	min-width: 600px ;
+}
+
+#url{
+	width: 40% ;
+}
+
+#plagForm{
+	display: none;
+	width: 28%;
+	margin: auto ;
+	margin-top: 1vh ; 
+}
+
+#logoImg{
+	display: none ;
+	width: 40%;
+	margin: auto ;
+	margin-top: 1vh ; 
+}#theEnd{

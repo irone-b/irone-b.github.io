@@ -1,0 +1,21 @@
+The company’s name “Maze Industries” lead to the decision of making the company
+a company based around solving difficuilt problems. Therefore, I decided to make the 
+company a company that helps people to make their difficuilt business ideas into a 
+reality by guiding them.
+
+Since the logo of the company is mainly text and line orientated, I have decided to use 
+type and basic minimalistic line drawings to tell the bussiness’s story. The user should 
+feel part of the story while interacting. They should feel as though they themselves are 
+struggling to get through the scenario. Therefore, I have made the story into a sort of a 
+game/puzzle/maze the user needs to get through.
+
+At the start the text and each scene moves relatively slowly, and the user moves slowly 
+through the scenario. However as soon as the “guide” appears , text and animations start 
+moving and appearing slightly faster (as things move when one has found a solution to
+ one’s problem).
+
+Signs of life are present by making objects throb or move repeatedly. I used similiar 
+animations for these signs of life in each scene to make the user used to the format 
+and help them realize where to click or move to next. Hierarchy is created by guiding 
+the users eye to where there is a moving object on the page. Emphasis is also created 
+for each object by looping movements.
